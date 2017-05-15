@@ -1,31 +1,49 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MachineTest_net_Vrishali
+namespace ConsoleApplication2
 {
-    class Task7
+    public class AddNumbers
     {
-        static void Main(string[] args)
-	{
-			int sum = 0 ;
-            Console.WriteLine("Enter a Number : ");
-
+        int result = 0;
+        AddNumbers()
+        {
+            result = 0;
+        }
+        public void addition(string[] arrValues)
+        {
+            try
+            {
+                for (int i = 0; i < arrValues.Length; i++)
+                {
+                    if (int.Parse(arrValues[i]) < 1000)
+                    {
+                        result = result + int.Parse(arrValues[i]);
+                    }            
+                }
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine("Exception caught: {0}", e);
+            }
+            finally
+            {
+                Console.WriteLine("Sum of digits is:" + result);
+                Console.ReadLine();
+            }
+        }
+        public static void Main()
+        {
+            Console.WriteLine("Enter a Number:");
             string num = Console.ReadLine();
-
-			string[] values = num.Split(',');
-			for(int i=0; i<values.Length;i++){
-				if(int.Parse(values[i]) < 1000){
-					sum = sum + int.Parse(values[i]);
-				}
-				
-			}
-		
-		  Console.WriteLine("Sum of Digits of the Number : "+sum);
-         
-	}
-}
+            string[] values = num.Split(';'); //putting values in array
+            AddNumbers add = new AddNumbers();
+            add.addition(values);
+        }
     }
+}
+
 
