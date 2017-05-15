@@ -4,43 +4,64 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MachineTest_net_Vrishali
+namespace ConsoleApplication2
 {
-    class Task5
+    public class AddNumbers
     {
-        static void main(string[] args)
+        int result = 0, flag = 0;
+
+        AddNumbers()
         {
-            int sum = 0, flag = 0;
-            Console.WriteLine("Enter a number:");
-            string num = Console.ReadLine();
-            string numbers = num.Replace(@"\\", @",");
-            string[] values = numbers.Split(',');
-            for(int i=0;i<values.Length;i++)
+            result = 0;
+        }
+        public void addition(string[] arrValues)
+        {
+            try
             {
-                if(values[i]=="")
+                for (int i = 0; i < arrValues.Length; i++)
                 {
-                    continue;
+                    if (arrValues[i] == "")
+                    {
+                        continue;
+                    }
+                    else if (int.Parse(arrValues[i]) < 0)
+                    {
+                        flag = 1;
+                    }
+                    else
+                    {
+                        result = result + int.Parse(arrValues[i]);
+                    }
                 }
-                else if (int.Parse(values[i]) < 0)
+               
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine("Exception caught: {0}", e);
+            }
+            finally
+            {
+                if (flag == 1)
                 {
-                    flag = 1;
+                    Console.WriteLine("Negative numbers not allowed");
+
                 }
                 else
                 {
-                    sum = sum + int.Parse(values[i]);
+                    Console.WriteLine("Sum of digits is:" + result);
                 }
+                Console.ReadLine();
             }
-            if (flag==1)
-            {
-                Console.WriteLine("Negative numbers not allowed");
-
-            }
-            else
-            {
-                Console.WriteLine("Sum of digits is:" + sum);
-            }
-
         }
-            
+        public static void Main()
+        {
+            Console.WriteLine("Enter a Number:");
+            string num = Console.ReadLine();
+            string numbers = num.Replace(@"\\", @";"); //replace '//' with ';'
+           string[] values = numbers.Split(';'); //putting values in array
+            AddNumbers add = new AddNumbers();
+            add.addition(values);
+        }
     }
 }
+
