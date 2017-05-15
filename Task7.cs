@@ -39,7 +39,7 @@ namespace MachineTest_net_Vrishali
         {
             Console.WriteLine("Enter a Number:");
             string num = Console.ReadLine();
-            string[] values = num.Split(';'); //putting values in array
+            string[] values = num.Split(','); //putting values in array
             AddNumbers add = new AddNumbers();
             add.addition(values);
         }
